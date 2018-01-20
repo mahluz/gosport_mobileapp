@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ item.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
+    <ion-img src="http://localhost/megatrix_server/storage/app/public/service.png" style="background-size: cover"></ion-img>
+  </div>
+
+  <div class="item-detail" padding>
+    <h2>{{item.name}}</h2>
+    <!-- <p>{{item.about}}</p> -->
+  </div>
+
+  <form (ngSubmit)="sendRequest()">
+  	<ion-list>
+  		<ion-item>
+  			<ion-label>
+  				Keluhan
+  			</ion-label>
+  			<ion-input type="text" [(ngModel)]="request.keluhan" name="keluhan" ></ion-input>
+  		</ion-item>
+  	</ion-list>
+  	<button ion-button small block>Submit</button>
+  </form>
+</ion-content>
