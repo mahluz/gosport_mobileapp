@@ -39,7 +39,7 @@ export class AuthServiceProvider {
 		console.log(credentials);
 		return Observable.create(observer=>{
 			// let access = (credentials.password==='pass' && credentials.email==='email');
-			this.http.post("http://localhost/megatrix_server/api/auth/login",credentials).subscribe(result=>{
+			this.http.post("http://localhost/gosport_server/api/auth/login",credentials).subscribe(result=>{
 				console.log(result);
 				if(result['response'] == 'success'){
 					this.storage.set('token',result['result']['token']);
@@ -62,7 +62,7 @@ export class AuthServiceProvider {
 		this.storage.get('token').then((data)=>{
 			let access = {token:data};
 
-			this.http.post('http://localhost/megatrix_server/api/user',access).subscribe(data=>{
+			this.http.post('http://localhost/gosport_server/api/user',access).subscribe(data=>{
 			  console.log(data);
 			  this.storage.set('userInfo',data);
 			  return data;
@@ -96,7 +96,7 @@ export class AuthServiceProvider {
 		this.storage.get('token').then(data=>{
 			console.log(data);
 			let access = {token:data};
-			this.http.post('http://localhost/megatrix_server/api/problem',access).subscribe(problem=>{
+			this.http.post('http://localhost/gosport_server/api/problem',access).subscribe(problem=>{
 				console.log(problem);
 			});
 			this.storage.get('userInfo').then((user)=>{
@@ -112,7 +112,7 @@ export class AuthServiceProvider {
 				token:data,
 				request:request
 			};
-			this.http.post('http://localhost/megatrix_server/api/request',access).subscribe(result=>{
+			this.http.post('http://localhost/gosport_server/api/request',access).subscribe(result=>{
 				console.log(result);
 				console.log('seharusnya berhasil');
 			},error=>{
@@ -121,12 +121,12 @@ export class AuthServiceProvider {
 		});
 	}
 
-	public getProblem(){
+	public getService(){
 
 		this.storage.get('token').then((data)=>{
 			let access = {token:data};
-			this.http.post('http://localhost/megatrix_server/api/problem',access).subscribe(data=>{
-				this.storage.set('problem',data);
+			this.http.post('http://localhost/gosport_server/api/services',access).subscribe(data=>{
+				this.storage.set('services',data);
 				console.log("post",data);
 			});
 

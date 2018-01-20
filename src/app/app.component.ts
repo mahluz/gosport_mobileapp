@@ -41,7 +41,7 @@ export class MyApp {
         if(data == null){
           this.rootPage = FirstRunPage;
         } else {
-          this.http.post('http://localhost/megatrix_server/api/user',{token:data}).subscribe(data=>{
+          this.http.post('http://localhost/gosport_server/api/user',{token:data}).subscribe(data=>{
             console.log(data);
             if(data["response"] != "error"){
               this.rootPage = MainPage;

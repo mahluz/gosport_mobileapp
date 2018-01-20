@@ -13,15 +13,15 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class ListMasterPage {
   currentItems: Item[];
-  problems:any;
+  services:any;
 
   constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController, public auth:AuthServiceProvider,public storage:Storage) {
     this.currentItems = this.items.query();
-    this.auth.getProblem();
-    this.storage.get('problem').then((data)=>{
+    this.auth.getService();
+    this.storage.get('services').then((data)=>{
       console.log("problem storage",data);
-      this.problems = data['result'];
-      console.log("problem variable",this.problems[0]);  
+      this.services = data['result'];
+      console.log("problem variable",this.services[0]);  
     });
 
     // console.log("problem",this.problems);
