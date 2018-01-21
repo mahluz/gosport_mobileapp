@@ -10,16 +10,16 @@ import { Items } from '../../providers/providers';
   templateUrl: 'item-detail.html'
 })
 export class ItemDetailPage {
-  item: any;
+  item={};
   request={};
 
   constructor(public navCtrl: NavController, navParams: NavParams, items: Items, public auth:AuthServiceProvider) {
-    this.item = navParams.get('item') || items.defaultItem;
+    this.item = navParams.get('service') || items.defaultItem;
     console.log("item yang diterima",this.item);
   }
 
   sendRequest(){
-  	// console.log(this.request);
+  	console.log(this.request);
   	this.auth.sendRequest(this.request);
   }
 

@@ -12,18 +12,11 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'list-master.html'
 })
 export class ListMasterPage {
-  currentItems: Item[];
   services:any;
 
   constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController, public auth:AuthServiceProvider,public storage:Storage) {
-    this.currentItems = this.items.query();
+    // this.currentItems = this.items.query();
     this.auth.getService();
-    this.storage.get('services').then((data)=>{
-      console.log("problem storage",data);
-      this.services = data['result'];
-      console.log("problem variable",this.services[0]);  
-    });
-
     // console.log("problem",this.problems);
   }
 
@@ -31,35 +24,19 @@ export class ListMasterPage {
    * The view loaded, let's query our items for the list
    */
   ionViewDidLoad() {
-  }
-
-  /**
-   * Prompt the user to add a new item. This shows our ItemCreatePage in a
-   * modal and then adds the new item to our data source if the user created one.
-   */
-  addItem() {
-    let addModal = this.modalCtrl.create('ItemCreatePage');
-    addModal.onDidDismiss(item => {
-      if (item) {
-        this.items.add(item);
-      }
-    })
-    addModal.present();
-  }
-
-  /**
-   * Delete an item from the list of items.
-   */
-  deleteItem(item) {
-    this.items.delete(item);
+    this.storage.get('services').then((data)=>{
+      console.log("problem storage",data);
+      this.services = data['result'];
+      console.log("problem variable",this.services[0]);  
+    });
   }
 
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(item: Item) {
+  openItem(item: Item,service) {
     this.navCtrl.push('ItemDetailPage', {
-      item: item
+      service: {item:item,service:service}
     });
   }
 }

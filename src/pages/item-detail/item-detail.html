@@ -12,19 +12,57 @@
     <ion-img src="http://localhost/megatrix_server/storage/app/public/service.png" style="background-size: cover"></ion-img>
   </div>
 
-  <div class="item-detail" padding>
-    <h2>{{item.name}}</h2>
-    <!-- <p>{{item.about}}</p> -->
-  </div>
-
   <form (ngSubmit)="sendRequest()">
+    <h1 ion-text color="secondary">{{item.service}}</h1>
   	<ion-list>
   		<ion-item>
   			<ion-label>
-  				Keluhan
+  				Nama
   			</ion-label>
-  			<ion-input type="text" [(ngModel)]="request.keluhan" name="keluhan" ></ion-input>
+  			<ion-input type="text" [(ngModel)]="request.name" name="name" ></ion-input>
   		</ion-item>
+      <ion-item>
+        <ion-label>
+          Umur
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="request.age" name="age" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Jenis Kelamin
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="request.gender" name="gender" ></ion-input>
+      </ion-item>
+      <ion-item>  
+        <ion-label>
+          Alamat
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="request.address" name="address" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Nomor Telepon
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="request.cp" name="cp" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Paket
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="request.packet" name="packet" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Tempat
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="request.place" name="place" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Tanggal Mulai
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="request.startat" name="startat" ></ion-input>
+      </ion-item>
   	</ion-list>
   	<button ion-button small block>Submit</button>
   </form>

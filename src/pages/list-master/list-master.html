@@ -60,7 +60,7 @@
     <ion-item *ngFor="let item of services">
       <h2>{{ item.service }}</h2>
       <p>{{ item.description }}</p>
-      <button ion-button outline item-end (click)="openItem(item.id)">Enter</button>
+      <button ion-button outline item-end (click)="openItem(item.id,item.service)">Enter</button>
     </ion-item>
   </ion-list>
 </ion-content>

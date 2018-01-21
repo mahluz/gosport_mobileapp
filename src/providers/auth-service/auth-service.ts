@@ -51,7 +51,7 @@ export class AuthServiceProvider {
 				observer.complete();
 				
 			},error=>{
-				console.log('gagal');
+				console.log('gagal',error);
 			});
 
 		});
@@ -72,7 +72,7 @@ export class AuthServiceProvider {
 	}
 
 	public logout(){
-		this.storage.remove('token');
+		this.storage.clear();
 		return Observable.create(observer=>{
 			this.currentUser = null;
 			observer.next(true);
