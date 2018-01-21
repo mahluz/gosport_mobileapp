@@ -15,6 +15,7 @@ export class ItemDetailPage {
 
   constructor(public navCtrl: NavController, navParams: NavParams, items: Items, public auth:AuthServiceProvider) {
     this.item = navParams.get('service') || items.defaultItem;
+    this.request = {service:this.item['service']}
     console.log("item yang diterima",this.item);
   }
 

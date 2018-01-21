@@ -15,20 +15,11 @@ import 'rxjs/Rx';
   and Angular DI.
 */
 
-export class User{
-	name:string;
-	email:string;
-
-	constructor(name:string,email:string){
-		this.name=name;
-		this.email=email;
-	}
-}
 
 @Injectable()
 export class AuthServiceProvider {
 
-	currentUser:User;
+	currentUser:any;
 	loading:Loading;
 
 	constructor(public http: HttpClient, public storage:Storage, public alertCtrl:AlertController, loadingCtrl:LoadingController) {
@@ -65,6 +56,7 @@ export class AuthServiceProvider {
 			this.http.post('http://localhost/gosport_server/api/user',access).subscribe(data=>{
 			  console.log(data);
 			  this.storage.set('userInfo',data);
+			  this.currentUser = data;
 			  return data;
 			});
 
@@ -110,7 +102,8 @@ export class AuthServiceProvider {
 		this.storage.get('token').then(data=>{
 			let access = {
 				token:data,
-				request:request
+				request:request,
+				user:this.currentUser
 			};
 			this.http.post('http://localhost/gosport_server/api/request',access).subscribe(result=>{
 				console.log(result);
