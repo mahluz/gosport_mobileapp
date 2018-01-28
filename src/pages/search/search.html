@@ -2,6 +2,11 @@
 
   <ion-navbar>
     <ion-title>Pesanan anda</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
   <!-- <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="order">
@@ -30,11 +35,11 @@
         </ion-item>
 
         <ion-item-options>
-          <button ion-button color="danger" >
+          <button ion-button color="danger" (click)="cancelOrder(request['id'])" >
             <ion-icon name="trash"></ion-icon>
             Cancel
           </button>
-          <button ion-button color="secondary" >
+          <button ion-button color="secondary" (click)="finishOrder(request['id'])" >
             <ion-icon name="checkmark"></ion-icon>
             Finish
           </button>
