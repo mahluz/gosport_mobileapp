@@ -21,8 +21,8 @@ export class LoginPage {
   loading:Loading;
   
   registerCredentials: { email: string, password: string } = {
-    email: 'asegaf@ymail.com',
-    password: 'zulhamganteng'
+    email: 'admin@gmail.com',
+    password: 'admin'
   };
 
   // registerCredentials = {email:'',password:''};

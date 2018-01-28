@@ -12,56 +12,69 @@
     <ion-img src="http://localhost/megatrix_server/storage/app/public/service.png" style="background-size: cover"></ion-img>
   </div>
 
-  <form (ngSubmit)="sendRequest()">
+  <form #form="ngForm" (ngSubmit)="sendRequest()">
     <h1 ion-text color="secondary">{{item.service}}</h1>
   	<ion-list>
   		<ion-item>
   			<ion-label>
   				Nama
   			</ion-label>
-  			<ion-input type="text" [(ngModel)]="request.name" name="name" ></ion-input>
+  			<ion-input type="text" required [(ngModel)]="request.name" name="name"></ion-input>
   		</ion-item>
       <ion-item>
         <ion-label>
           Umur
         </ion-label>
-        <ion-input type="text" [(ngModel)]="request.age" name="age" ></ion-input>
+        <ion-input type="number" [(ngModel)]="request.age" name="age" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>
           Jenis Kelamin
         </ion-label>
-        <ion-input type="text" [(ngModel)]="request.gender" name="gender" ></ion-input>
+        <ion-select [(ngModel)]="request.gender" name="gender" required>
+          <ion-option value="Laki-laki">Laki-laki</ion-option>
+          <ion-option value="Perempuan">Perempuan</ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>  
         <ion-label>
           Alamat
         </ion-label>
-        <ion-input type="text" [(ngModel)]="request.address" name="address" ></ion-input>
+        <ion-input type="text" [(ngModel)]="request.address" name="address" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>
           Nomor Telepon
         </ion-label>
-        <ion-input type="text" [(ngModel)]="request.cp" name="cp" ></ion-input>
+        <ion-input type="number" [(ngModel)]="request.cp" name="cp" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>
           Paket
         </ion-label>
-        <ion-input type="text" [(ngModel)]="request.packet" name="packet" ></ion-input>
+        <ion-select [(ngModel)]="request.packet" name="packet" required>
+          <ion-option *ngFor="let item of packet" value="{{item.packet}}">{{item.packet}}</ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>
           Tempat
         </ion-label>
-        <ion-input type="text" [(ngModel)]="request.place" name="place" ></ion-input>
+        <ion-select [(ngModel)]="request.place" name="place" required>
+          <ion-option *ngFor="let item of place" value="{{item.place}}">{{item.place}}</ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>
           Tanggal Mulai
         </ion-label>
-        <ion-input type="text" [(ngModel)]="request.startat" name="startat" ></ion-input>
+        <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="request.start_date" name="start_date" required></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Waktu Mulai
+        </ion-label>
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="request.start_time" name="start_time" required></ion-datetime>
       </ion-item>
   	</ion-list>
   	<button ion-button small block>Submit</button>
