@@ -56,7 +56,7 @@ export class AuthServiceProvider {
 			this.http.post('http://localhost/gosport_server/api/user',access).subscribe(data=>{
 			  console.log(data);
 			  this.storage.set('userInfo',data);
-			  this.currentUser = data;
+			  this.currentUser = data["result"];
 			  return data;
 			});
 

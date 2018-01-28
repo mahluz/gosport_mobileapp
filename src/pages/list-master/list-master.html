@@ -2,12 +2,6 @@
 
   <ion-navbar>
     <ion-title>Menu Layanan</ion-title>
-
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addItem()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -58,6 +52,9 @@
   </ion-grid> -->
   <ion-list>
     <ion-item *ngFor="let item of services">
+      <ion-avatar item-start>
+        <img src="https://www.shareicon.net/download/2015/09/03/95260_sport_512x512.png">
+      </ion-avatar>
       <h2>{{ item.service }}</h2>
       <p>{{ item.description }}</p>
       <button ion-button outline item-end (click)="openItem(item.id,item.service)">Enter</button>
