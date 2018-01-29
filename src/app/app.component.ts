@@ -31,6 +31,7 @@ export class MyApp {
     { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' },
     { title: 'Material', component: 'MaterialPage' },
+    { title: 'History', component: 'HistoryPage' },
 
   ]
 

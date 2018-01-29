@@ -21,6 +21,30 @@
         <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label fixed>
+          Gender
+        </ion-label>
+        <ion-select [(ngModel)]="account.gender" name="gender">
+          <ion-option value="Laki-laki">Laki-laki</ion-option>
+          <ion-option value="Perempuan">Perempuan</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>
+          Birt date
+        </ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="account.birth_date" name="birth_date"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>
+          CP
+        </ion-label>
+        <ion-input type="number" [(ngModel)]="account.cp" name="cp"></ion-input>
+      </ion-item>
+
       <!--
       Want to add a Username? Here you go:
 

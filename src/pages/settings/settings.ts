@@ -20,7 +20,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class SettingsPage {
   // Our local settings object
-   biodata:any;
+   biodata={};
 
   constructor(public navCtrl: NavController,
     public settings: Settings,
@@ -37,10 +37,10 @@ export class SettingsPage {
       let access = {
         token:data,
         user_id:this.auth.currentUser["id"]
-      }
+      };
       this.http.post('http://localhost/gosport_server/api/getBiodata',access).subscribe(result=>{
-        this.biodata = result;
-        console.log(this.biodata);
+        this.biodata = result["biodata"];
+        console.log("biodata",this.biodata);
       });
     });
   }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { Item } from '../../models/item';

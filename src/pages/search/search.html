@@ -31,10 +31,13 @@
           </ion-avatar>
           <h2>{{ request["service"] }}</h2>
           <p>Status: {{ request["description"] }}</p>
-          <p>Ditangani oleh : {{request["name"]}}</p>
         </ion-item>
 
         <ion-item-options>
+          <button ion-button color="primary" (click)="detailOrder(request['id'])" >
+            <ion-icon name="search"></ion-icon>
+            Detail
+          </button>
           <button ion-button color="danger" (click)="cancelOrder(request['id'])" >
             <ion-icon name="trash"></ion-icon>
             Cancel
@@ -46,8 +49,8 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
-    <button ion-button block icon-start><ion-icon name="time"></ion-icon>  History</button>
   </form>
+  <button ion-button block icon-start (click)="history()" ><ion-icon name="time"></ion-icon>  History</button>
 </ion-content>
 <!-- Segment in a header -->
 

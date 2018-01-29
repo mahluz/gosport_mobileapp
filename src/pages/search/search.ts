@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Item } from '../../models/item';
 import { Items } from '../../providers/providers';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { AlertController, LoadingController, Loading } from 'ionic-angular';
+import { AlertController, LoadingController, Loading,ActionSheetController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -14,6 +14,7 @@ import { AlertController, LoadingController, Loading } from 'ionic-angular';
 })
 export class SearchPage {
   requests:any;
+  details:any;
 
   constructor(
   	public navCtrl: NavController, 
@@ -22,7 +23,8 @@ export class SearchPage {
   	public http:HttpClient,
   	public storage:Storage,
   	public auth:AuthServiceProvider,
-    public alertCtrl:AlertController) { 
+    public alertCtrl:AlertController,
+    public actionSheetCtrl: ActionSheetController) { 
   	// this.user = "ulala";
   }
 
@@ -85,8 +87,13 @@ export class SearchPage {
       let access = {token:data,order_id:order_id};
       this.http.post('http://localhost/gosport_server/api/finishOrder',access).subscribe(result=>{
         console.log(result);
-        this.showAlert('Sucessfully','Thanks for using our Service');
-        this.refresh();
+        if(result["result"] == 1){
+          this.showAlert('Sucessfully','Thanks for using our Service');
+          this.refresh();
+        } else {
+          this.showAlert('Failed','Please wait our Technician or Call our Customer Service');
+          this.refresh();
+        }
       });
     });
   }
@@ -100,5 +107,62 @@ export class SearchPage {
     alert.present();
   }
 
+  detailOrder(order_id){
+
+    this.storage.get('token').then(data=>{
+      let access = {
+        token:data,
+        order_id:order_id
+      };
+
+      this.http.post('http://localhost/gosport_server/api/detailOrder',access).subscribe(data=>{
+
+        this.details = data;
+        console.log("order id",order_id);
+        console.log(this.details);
+
+        let actionSheet = this.actionSheetCtrl.create({
+          title: 'Detail Order',
+          buttons: [
+            {
+              text: 'Ditangani oleh : '+this.details["technician"]["name"],
+              role: 'destructive',
+              handler: () => {
+                console.log('Destructive clicked');
+              }
+            },{
+              text: 'Contact : '+this.details["technician"]["cp"],
+              handler: () => {
+                console.log('Archive clicked');
+              }
+            },{
+              text: 'Aktifitas Terakhir : '+this.details["order"]["updated_at"],
+              handler: () => {
+                console.log('Archive clicked');
+              }
+            },{
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            }
+          ]
+        });
+        actionSheet.present();
+
+      },error=>{
+        console.log("error nih",error);
+        this.showAlert("error","error to get Order Details");
+      });
+
+    });
+
+  }
+
+  history(){
+    console.log('history');
+    this.navCtrl.push('HistoryPage');
+  }
 
 }

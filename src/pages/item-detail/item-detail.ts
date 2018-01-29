@@ -31,7 +31,12 @@ export class ItemDetailPage {
     public alertCtrl: AlertController) {
 
     this.item = navParams.get('service') || items.defaultItem;
-    this.request = {service:this.item['service']}
+    
+    this.request = {
+      service:this.item['service'],
+      name:this.auth.currentUser["name"]
+    }
+
     console.log("item yang diterima",this.item);
 
     this.storage.get('token').then((data)=>{
@@ -47,9 +52,9 @@ export class ItemDetailPage {
 
       });
     });
-    this.storage.get('userInfo').then((data)=>{
-      this.currentUser=data;
-    });
+
+    this.currentUser=this.auth.currentUser;
+
 
   }
 
@@ -67,7 +72,7 @@ export class ItemDetailPage {
         this.showAlert('Success','Your request has been sent, please stay forward to get response in your Order menu');
         this.navCtrl.push('ListMasterPage');
       },error=>{
-        console.log("gagal");
+        console.log("gagal",error);
         this.showAlert('Gagal','Tolong lengkapi data diri anda');
       });
     });

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
-
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
+import { AlertController, LoadingController, Loading } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -14,7 +16,7 @@ export class SignupPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { name: string, email: string, password: string } = {
+  account = {
     name: 'Test Human',
     email: 'test@example.com',
     password: 'test'
@@ -26,7 +28,10 @@ export class SignupPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    public http:HttpClient,
+    public storage:Storage,
+    public alertCtrl:AlertController) {
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
@@ -35,19 +40,27 @@ export class SignupPage {
 
   doSignup() {
     // Attempt to login in through our User service
-    this.user.signup(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
-    }, (err) => {
+    console.log(this.account);
 
-      this.navCtrl.push(MainPage);
+    this.storage.get('token').then(data=>{
 
-      // Unable to sign up
-      let toast = this.toastCtrl.create({
-        message: this.signupErrorString,
-        duration: 3000,
-        position: 'top'
+      this.http.post('http://localhost/gosport_server/api/signup',this.account).subscribe(result=>{
+        console.log(result);
+        this.showAlert("Sucess","You are sucessfully registered as our Client. please Login to use our service");
+        this.navCtrl.push('LoginPage');
       });
-      toast.present();
+
     });
+
   }
+
+  showAlert(title,message) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
 }

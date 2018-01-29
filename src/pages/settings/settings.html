@@ -8,12 +8,24 @@
 
 <ion-content>
   <div class="item-profile">
-    <ion-img src="http://www.matchboxhr.com/wp-content/uploads/2014/08/team3.jpg" style="background-size: cover"></ion-img>
+    <ion-img src="http://jrsautomoviles.com/wp-content/uploads/2013/09/MAN-AVATAR.jpg" style="background-size: cover"></ion-img>
   </div>
 
   <ion-list>
     <ion-item>
-      <h2 ion-text>Nama : Zulham</h2>
+      <h2 ion-text>Nama : {{ biodata.name }}</h2>
+    </ion-item>
+    <ion-item>
+      <h2 ion-text>Email : {{ biodata.email }}</h2>
+    </ion-item>
+    <ion-item>
+      <h2 ion-text>Jenis Kelamin : {{ biodata.gender }}</h2>
+    </ion-item>
+    <ion-item>
+      <h2 ion-text>Tanggal Lahir : {{ biodata.birth_date }}</h2>
+    </ion-item>
+    <ion-item>
+      <h2 ion-text>CP : {{ biodata.cp }}</h2>
     </ion-item>
   </ion-list>
 
