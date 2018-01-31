@@ -64,7 +64,8 @@ export class ItemDetailPage {
       let access = {
         token:data,
         request:this.request,
-        user:this.currentUser
+        user:this.currentUser,
+        service:this.item
       };
       this.http.post('http://localhost/gosport_server/api/request',access).subscribe(result=>{
         console.log(result);

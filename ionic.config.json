@@ -1,6 +1,6 @@
 {
-  "name": "Megatrix",
-  "app_id": "6d492286",
+  "name": "GoSport",
+  "app_id": "5bbd4188",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

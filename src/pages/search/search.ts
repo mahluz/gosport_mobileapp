@@ -131,6 +131,11 @@ export class SearchPage {
                 console.log('Destructive clicked');
               }
             },{
+              text: 'Alamat : '+this.details["order"]["address"],
+              handler: () => {
+                console.log('Archive clicked');
+              }
+            },{
               text: 'Contact : '+this.details["technician"]["cp"],
               handler: () => {
                 console.log('Archive clicked');
